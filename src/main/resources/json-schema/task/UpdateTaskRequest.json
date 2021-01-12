@@ -1,0 +1,48 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"type": "object",
+	"description": "Update DTO",
+	"javaType": "com.example.handlersolver1.dto.UpdateTaskRequest",
+	"required": [
+		"taskId",
+		"ucpId"
+	],
+	"additionalProperties": false,
+	"properties": {
+		"taskId": {
+			"type": "string",
+			"description": "Task ID",
+			"maxLength": 10
+		},
+		"ucpId": {
+			"type": "integer",
+			"description": "Код организации"
+		},
+		"taskStatus": {
+			"description": "Task Status Code",
+			"type": "string",
+			"maxLength": 50
+		},
+		"taskState": {
+			"description": "Task State Code",
+			"type": "string",
+			"maxLength": 50
+		}
+
+	},
+	"if": {
+		"properties": {
+			"taskStatus": {
+				"const": "CLOSED"
+			}
+		}
+	},
+	"then": {
+		"required": [
+			"taskState"
+		]
+	},
+	"else": {
+		"required": []
+	}
+}
